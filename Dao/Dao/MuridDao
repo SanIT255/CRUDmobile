@@ -1,0 +1,29 @@
+package com.example.uasmobile3.database.dao;
+
+
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Query;
+
+import com.example.uasmobile3.database.entitas.Murid;
+
+import java.util.List;
+
+@Dao
+public interface MuridDao {
+    @Query("SELECT * FROM Murid")
+    List<Murid> getAll();
+
+
+    @Query("INSERT INTO Murid (noinduk,tglmasuk,notelp_orgtua,nama,agama,jnskelamin,alamat,tempatlahir,tgllahir,tahunajaran,namaorangtua,alamatorangtua) VALUES(:noinduk,:tglmasuk,:notelp_orgtua,:nama,:agama,:jnskelamin,:alamat,:tempatlahir,:tgllahir,:tahunajaran,:namaorangtua, :alamatorangtua)")
+    void insertAll(String noinduk, String tglmasuk, String notelp_orgtua, String nama, String agama, String jnskelamin, String alamat, String tempatlahir, String tgllahir,String tahunajaran, String namaorangtua, String alamatorangtua);
+
+    @Query("UPDATE Murid SET noinduk=:noinduk, tglmasuk=:tglmasuk, notelp_orgtua=:notelp_orgtua, nama=:nama, agama=:agama, jnskelamin=:jnskelamin, alamat=:alamat, tempatlahir=:tempatlahir, tgllahir=:tgllahir, tahunajaran=:tahunajaran, namaorangtua=:namaorangtua, alamatorangtua=:alamatorangtua WHERE Id=:Id")
+    void update(int Id, String noinduk, String tglmasuk, String notelp_orgtua, String nama, String agama, String jnskelamin, String alamat, String tempatlahir, String tgllahir,String tahunajaran, String namaorangtua, String alamatorangtua);
+
+    @Query("SELECT * FROM Murid WHERE Id=:Id")
+    Murid get(int Id);
+
+    @Delete
+    void delete(Murid murid);
+}
