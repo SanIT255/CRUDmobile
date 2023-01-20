@@ -1,0 +1,25 @@
+package com.example.uasmobile3.database.entitas;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
+public class Murid {
+    @PrimaryKey
+    public int Id;
+
+    public String noinduk;
+    public String tglmasuk;
+    public String notelp_orgtua;
+    public String nama;
+    public String agama;
+    public String jnskelamin;
+    public String alamat;
+    public String tempatlahir;
+    public String tgllahir;
+    public String tahunajaran;
+    public String namaorangtua;
+    public String alamatorangtua;
+
+}
