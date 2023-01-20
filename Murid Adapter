@@ -1,0 +1,96 @@
+package com.example.uasmobile3.adapter;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.uasmobile3.R;
+import  com.example.uasmobile3.database.entitas.Murid;
+
+
+import java.util.List;
+
+public class MuridAdapter extends RecyclerView.Adapter<MuridAdapter.ViewAdapter> {
+    private List<Murid> list;
+    private Context context;
+    private Dialog dialog;
+
+    public interface Dialog {
+        void onClick(int position);
+    }
+    public void setDialog(Dialog dialog) {
+        this.dialog = dialog;
+    }
+    public MuridAdapter(Context context, List<Murid> list){
+        this.context = context;
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public ViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_murid, parent, false);
+        return new ViewAdapter(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
+
+        holder.Id.setText(list.get(position).Id);
+        holder.noinduk.setText(list.get(position).noinduk);
+        holder.tglmasuk.setText(list.get(position).tglmasuk);
+        holder.notelp_orgtua.setText(list.get(position).notelp_orgtua);
+        holder.nama.setText(list.get(position).nama);
+        holder.agama.setText(list.get(position).agama);
+        holder.jnskelamin.setText(list.get(position).jnskelamin);
+        holder.alamat.setText(list.get(position).alamat);
+        holder.tempatlahir.setText(list.get(position).tempatlahir);
+        holder.tgllahir.setText(list.get(position).tgllahir);
+        holder.tahunajaran.setText(list.get(position).tahunajaran);
+        holder.namaorangtua.setText(list.get(position).namaorangtua);
+        holder.alamatorangtua.setText(list.get(position).alamatorangtua);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    class ViewAdapter extends RecyclerView.ViewHolder{
+        TextView noinduk, tglmasuk,notelp_orgtua,Id, nama, agama, jnskelamin, alamat, tempatlahir, tgllahir, tahunajaran,namaorangtua, alamatorangtua ;
+
+        public ViewAdapter(@NonNull View itemView) {
+            super(itemView);
+            Id = itemView.findViewById(R.id.Id);
+            noinduk= itemView.findViewById(R.id.noinduk);
+            tglmasuk= itemView.findViewById(R.id.tglmasuk);
+            notelp_orgtua = itemView.findViewById(R.id.notelp_orgtua);
+            nama= itemView.findViewById(R.id.nama);
+            agama = itemView.findViewById(R.id.agama);
+            jnskelamin = itemView.findViewById(R.id.jnskelamin);
+            alamat = itemView.findViewById(R.id.alamat);
+            tempatlahir = itemView.findViewById(R.id.tempatlahir);
+            tgllahir = itemView.findViewById(R.id.tgllahir);
+            tahunajaran = itemView.findViewById(R.id.tahunajaran);
+            namaorangtua = itemView.findViewById(R.id.namaorangtua);
+            alamatorangtua = itemView.findViewById(R.id.alamatorangtua);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (dialog!=null){
+                        dialog.onClick(getLayoutPosition());
+                    }
+
+                }
+            });
+
+        }
+    }
+}
